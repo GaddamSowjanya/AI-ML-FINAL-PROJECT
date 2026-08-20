@@ -1,0 +1,89 @@
+import streamlit as st
+import pandas as pd
+import os
+import time
+
+
+st.set_page_config(
+    page_title="Live Fyers ML Trader",
+    layout="wide"
+)
+
+
+st.title(
+    "Live Fyers ML Prediction System"
+)
+
+
+st.write(
+    "Real-time market data + ML prediction"
+)
+
+
+LIVE_FILE = (
+    "3_data_and_model/day1/live_data.csv"
+)
+
+PREDICTION_FILE = (
+    "3_data_and_model/day1/live_predictions.csv"
+)
+
+
+if os.path.exists(LIVE_FILE):
+
+    live = pd.read_csv(
+        LIVE_FILE
+    )
+
+    st.subheader(
+        "Live Market Data"
+    )
+
+    st.dataframe(
+        live.tail(20),
+        use_container_width=True
+    )
+
+    if len(live) > 0:
+
+        st.metric(
+            "Latest LTP",
+            live.iloc[-1]["ltp"]
+        )
+
+
+if os.path.exists(
+    PREDICTION_FILE
+):
+
+    predictions = pd.read_csv(
+        PREDICTION_FILE
+    )
+
+    st.subheader(
+        "ML Predictions"
+    )
+
+    st.dataframe(
+        predictions.tail(20),
+        use_container_width=True
+    )
+
+    if len(predictions) > 0:
+
+        latest = predictions.iloc[-1]
+
+        st.metric(
+            "Signal",
+            latest["signal"]
+        )
+
+        st.metric(
+            "Confidence",
+            f"{latest['confidence']:.2%}"
+        )
+
+
+time.sleep(2)
+
+st.rerun()
