@@ -1,0 +1,14 @@
+Create requirements.txt:
+
+fyers-apiv3
+pandas
+numpy
+scikit-learn
+joblib
+python-dotenv
+streamlit
+reportlab
+
+Install:
+Bash</>
+pip install -r requirements.txt
