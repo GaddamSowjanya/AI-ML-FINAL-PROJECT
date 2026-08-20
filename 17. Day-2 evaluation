@@ -1,0 +1,127 @@
+Create:
+
+1_source_code/day2_evaluation.py
+
+import pandas as pd
+        actual["timestamp"]
+        > signal["timestamp"]
+    ]
+
+
+    if future.empty:
+        continue
+
+
+    future_price = future.iloc[0]["ltp"]
+
+
+    predicted_direction = (
+        signal["signal"]
+    )
+
+
+    actual_direction = (
+        "BUY"
+        if future_price > signal["ltp"]
+        else "SELL"
+    )
+
+
+    correct = (
+        predicted_direction
+        == actual_direction
+    )
+
+
+    results.append({
+
+
+        "prediction_time":
+            signal["timestamp"],
+
+
+        "prediction":
+            predicted_direction,
+
+
+        "confidence":
+            signal["confidence"],
+
+
+        "prediction_price":
+            signal["ltp"],
+
+
+        "actual_price":
+            future_price,
+
+
+        "actual_direction":
+            actual_direction,
+
+
+        "correct":
+            correct
+    })
+
+
+
+
+evaluation = pd.DataFrame(
+    results
+)
+
+
+
+
+if not evaluation.empty:
+
+
+    success_rate = (
+        evaluation["correct"].mean()
+        * 100
+    )
+
+
+    print(
+        f"Total predictions: "
+        f"{len(evaluation)}"
+    )
+
+
+    print(
+        f"Correct predictions: "
+        f"{evaluation['correct'].sum()}"
+    )
+
+
+    print(
+        f"Success rate: "
+        f"{success_rate:.2f}%"
+    )
+
+
+    evaluation.to_csv(
+        OUTPUT,
+        index=False
+    )
+
+
+else:
+
+
+    print(
+        "No matching data found."
+    )
+18. performance_report.csv
+
+After the real evaluation, generate:
+
+metric,value
+total_predictions,ACTUAL_VALUE
+correct_predictions,ACTUAL_VALUE
+incorrect_predictions,ACTUAL_VALUE
+success_rate,ACTUAL_VALUE
+average_confidence,ACTUAL_VALUE
+
+Do not manually enter numbers.
