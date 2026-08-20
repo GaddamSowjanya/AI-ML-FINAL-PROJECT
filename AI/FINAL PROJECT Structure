@@ -1,0 +1,39 @@
+fyers_ml_trading/
+│
+├── 1_source_code/
+│   ├── config.py
+│   ├── features.py
+│   ├── model.py
+│   ├── signal_generator.py
+│   ├── live_data.py
+│   ├── evaluator.py
+│   ├── train_model.py
+│   ├── run_live.py
+│   └── dashboard.py
+│
+├── 2_executable/
+│   └── README.txt
+│
+├── 3_data_and_model/
+│   ├── day1/
+│   │   ├── live_data.csv
+│   │   └── live_predictions.csv
+│   │
+│   ├── day2/
+│   │   ├── actual_results.csv
+│   │   └── evaluation.csv
+│   │
+│   └── model/
+│       └── trained_model.pkl
+│
+├── 4_performance_report/
+│   ├── performance_report.pdf
+│   ├── performance_report.csv
+│   └── signals.csv
+│
+├── 5_screen_recording/
+│   └── demo.mp4
+│
+├── .env
+├── requirements.txt
+└── README.md
