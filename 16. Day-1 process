@@ -1,0 +1,25 @@
+ou need to actually run:
+
+python 1_source_code/run_live.py
+
+During the trading day, it creates:
+
+3_data_and_model/day1/live_data.csv
+
+and:
+
+3_data_and_model/day1/live_predictions.csv
+
+The files will contain real information such as:
+
+timestamp,symbol,ltp,volume,bid,ask
+2026-08-21T09:20:10,NSE:SBIN-EQ,812.35,...
+2026-08-21T09:20:11,NSE:SBIN-EQ,812.40,...
+
+and:
+
+timestamp,symbol,ltp,signal,confidence
+2026-08-21T09:25:10,NSE:SBIN-EQ,813.20,BUY,0.78
+2026-08-21T09:25:15,NSE:SBIN-EQ,813.35,BUY,0.81
+
+These are examples of the format only. Your actual values must come from Fyers.
