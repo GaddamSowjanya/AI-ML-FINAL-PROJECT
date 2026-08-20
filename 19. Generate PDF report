@@ -1,0 +1,104 @@
+Create:
+
+1_source_code/create_report.py
+
+from reportlab.lib.pagesizes import A4
+        ],
+
+
+        [
+            "Correct Predictions",
+            str(correct)
+        ],
+
+
+        [
+            "Incorrect Predictions",
+            str(total - correct)
+        ],
+
+
+        [
+            "Success Rate",
+            f"{success:.2f}%"
+        ],
+
+
+        [
+            "Average Confidence",
+            f"{avg_conf:.2f}%"
+        ]
+    ]
+
+
+    table = Table(data)
+
+
+    table.setStyle(
+        TableStyle([
+            (
+                "BACKGROUND",
+                (0, 0),
+                (-1, 0),
+                colors.grey
+            ),
+
+
+            (
+                "TEXTCOLOR",
+                (0, 0),
+                (-1, 0),
+                colors.white
+            ),
+
+
+            (
+                "GRID",
+                (0, 0),
+                (-1, -1),
+                1,
+                colors.black
+            ),
+
+
+            (
+                "ALIGN",
+                (0, 0),
+                (-1, -1),
+                "CENTER"
+            )
+        ])
+    )
+
+
+    story.append(table)
+
+
+
+
+story.append(
+    Spacer(1, 20)
+)
+
+
+
+
+story.append(
+    Paragraph(
+        "The performance figures in this report "
+        "are generated from collected market "
+        "data and prediction records rather "
+        "than manually entered results.",
+        styles["BodyText"]
+    )
+)
+
+
+
+
+doc.build(story)
+
+
+print(
+    f"Report created: {OUTPUT}"
+)
