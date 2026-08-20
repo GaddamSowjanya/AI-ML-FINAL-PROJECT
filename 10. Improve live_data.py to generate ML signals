@@ -1,0 +1,74 @@
+def process_tick(message):
+
+    if not isinstance(message, dict):
+        return
+
+    if "ltp" not in message:
+        return
+
+    ltp = message.get("ltp")
+
+    if ltp is None:
+        return
+
+    timestamp = datetime.now().isoformat()
+
+    row = {
+        "timestamp": timestamp,
+        "symbol": message.get(
+            "symbol",
+            SYMBOL
+        ),
+        "ltp": float(ltp),
+        "volume": message.get(
+            "vol_traded_today",
+            0
+        ),
+        "bid": message.get(
+            "bid_price",
+            0
+        ),
+        "ask": message.get(
+            "ask_price",
+            0
+        )
+    }
+
+    history.append(row)
+
+    save_tick(row)
+
+    print(
+        f"[LIVE] {row['symbol']} "
+        f"LTP={row['ltp']}"
+    )
+
+    if len(history) >= 15:
+
+        try:
+
+            from model import load_model
+            from signal_generator import generate_signal
+
+            model = load_model()
+
+            result = generate_signal(
+                model,
+                history
+            )
+
+            if result:
+
+                print(
+                    f"[ML] "
+                    f"{result['signal']} "
+                    f"Confidence="
+                    f"{result['confidence']:.2%}"
+                )
+
+        except Exception as error:
+
+            print(
+                "[ML ERROR]",
+                error
+            )
