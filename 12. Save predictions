@@ -1,0 +1,51 @@
+import csv
+import os
+
+from config import PREDICTION_FILE
+
+
+FIELDS = [
+    "timestamp",
+    "symbol",
+    "ltp",
+    "signal",
+    "confidence"
+]
+
+
+def save_prediction(result):
+
+    exists = os.path.exists(
+        PREDICTION_FILE
+    )
+
+    with open(
+        PREDICTION_FILE,
+        "a",
+        newline=""
+    ) as file:
+
+        writer = csv.DictWriter(
+            file,
+            fieldnames=FIELDS
+        )
+
+        if not exists:
+            writer.writeheader()
+
+        writer.writerow({
+            "timestamp":
+                result["timestamp"],
+
+            "symbol":
+                result["symbol"],
+
+            "ltp":
+                result["ltp"],
+
+            "signal":
+                result["signal"],
+
+            "confidence":
+                result["confidence"]
+        })
