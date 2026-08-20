@@ -1,0 +1,6 @@
+metric,value
+total_predictions,ACTUAL_VALUE
+correct_predictions,ACTUAL_VALUE
+incorrect_predictions,ACTUAL_VALUE
+success_rate,ACTUAL_VALUE
+average_confidence,ACTUAL_VALUE
